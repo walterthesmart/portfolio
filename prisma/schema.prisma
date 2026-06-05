@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Transaction {
+  id         String   @id @default(cuid())
+  symbol     String
+  date       String
+  type       String   // "BUY" | "SELL" | "TXIN" | "TXOUT"
+  price      Float
+  shares     Float
+  fees       Float    @default(0)
+  assetClass String   @default("Stock")
+  createdAt  DateTime @default(now())
+}
+
+model HistoricalPrice {
+  id        String   @id @default(cuid())
+  symbol    String
+  date      String   // "YYYY-MM-DD"
+  close     Float
+  createdAt DateTime @default(now())
+
+  @@unique([symbol, date])
+}
+
+model CustomPrice {
+  symbol    String   @id
+  price     Float
+  updatedAt DateTime @updatedAt
+}
