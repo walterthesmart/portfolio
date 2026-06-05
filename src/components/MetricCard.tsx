@@ -31,7 +31,7 @@ export default function MetricCard({
       {isLoading ? (
         <div className="h-8 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
       ) : (
-        <div className="flex items-baseline space-x-2">
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span className="text-2xl font-bold text-gray-900 dark:text-white">
             {prefix}{value}{suffix}
           </span>
