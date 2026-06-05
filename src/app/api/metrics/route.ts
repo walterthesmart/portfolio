@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { calculatePositions, calculateOverallMetrics, calculateAdvancedMetrics } from '@/lib/calculations';
-import { PriceData } from '@/types';
+import { PriceData, Transaction } from '@/types';
 
 export async function POST(request: Request) {
   try {
@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     // 1. Fetch transactions from DB
     let transactions = await prisma.transaction.findMany({
       orderBy: { date: 'asc' },
-    });
+    }) as unknown as Transaction[];
 
     // 2. Filter transactions by end date if provided
     if (endDate) {
