@@ -160,7 +160,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     const merged = { ...fetchedPrices };
     Object.keys(customPrices).forEach(sym => {
       if (!merged[sym] || merged[sym] === null) {
-        merged[sym] = { price: customPrices[sym], previousClose: 0, currency: 'USD', historical: [] };
+        merged[sym] = { price: customPrices[sym], previousClose: 0, currency: 'USD', longName: sym, historical: [] };
       } else {
         merged[sym] = { ...merged[sym], price: customPrices[sym] };
       }

@@ -29,7 +29,7 @@ export default function CSVUploader() {
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
+      complete: (results: any) => {
         try {
           const txs: Transaction[] = [];
           
@@ -72,7 +72,7 @@ export default function CSVUploader() {
           setMessage('Failed to parse CSV. Make sure it matches the expected format.');
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         setStatus('error');
         setMessage(`CSV Parsing Error: ${error.message}`);
       }

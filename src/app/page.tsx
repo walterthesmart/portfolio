@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import { usePortfolio } from '@/context/PortfolioContext';
+import { PortfolioPosition } from '@/types';
 import { calculatePositions, calculateOverallMetrics, calculateAdvancedMetrics } from '@/lib/calculations';
 import MetricCard from '@/components/MetricCard';
 import { RefreshCw, Pencil, Check, X, Loader2 } from 'lucide-react';
@@ -165,7 +166,7 @@ export default function Dashboard() {
                   </td>
                 </tr>
               ) : (
-                allPositions.map((pos) => {
+                allPositions.map((pos: PortfolioPosition) => {
                   const isExcluded = excludedSymbols.includes(pos.symbol);
                   return (
                   <tr key={pos.symbol} className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-opacity ${isExcluded ? 'opacity-40' : 'opacity-100'}`}>

@@ -323,6 +323,7 @@ export function calculateAdvancedMetrics(
     const twrResult = calculateTimeWeightedReturn({
       portfolioValues,
       cashFlows: twrCashFlows,
+      annualizationFactor: 1,
     });
     twr = (twrResult.twr || 0) * 100;
   } catch (e) {
